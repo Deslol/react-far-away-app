@@ -3,9 +3,14 @@ import {useState} from "react";
 
 export default function Form() {
     const [newItem, setNewItem] = useState({description: '', quantity: 1, packed: false})
+    const reset = () => {
+        setNewItem({description: '', quantity: 1, packed: false})
+    }
     const submitHandler = (e) => {
         e.preventDefault()
         console.log(newItem)
+        if (!newItem.description) return
+        reset()
     }
     const changeHandler = (e) => {
         setNewItem(prevItem => ({
