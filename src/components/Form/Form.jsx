@@ -2,7 +2,7 @@ import styles from './Form.module.css'
 import {useState} from "react";
 
 export default function Form() {
-    const [newItem, setNewItem] = useState({description: '', quantity: 0, packed: false})
+    const [newItem, setNewItem] = useState({description: '', quantity: 1, packed: false})
     const submitHandler = (e) => {
         e.preventDefault()
         console.log(newItem)
@@ -23,7 +23,7 @@ export default function Form() {
         <h3>
             What do you need for your 😍 trip?
         </h3>
-        <select onChange={onChangeHandler}>
+        <select onChange={onChangeHandler} value={newItem.quantity}>
             {Array.from({length: 20}, (_, i) => {
                 return <option key={i + 1} value={i + 1}>{i + 1}</option>
             })}
