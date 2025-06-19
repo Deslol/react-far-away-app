@@ -1,11 +1,40 @@
 import styles from './Form.module.css'
+import {useState} from "react";
 
 export default function Form() {
-    return (
-        <div className={styles.addForm}>
-            <h3>
-                What do you need for your 😍 trip?
-            </h3>
-        </div>
-    );
+    const [newItem, setNewItem] = useState({description: '', quantity: 0, packed: false})
+    const submitHandler = (e) => {
+        e.preventDefault()
+        console.log(newItem)
+    }
+    const changeHandler = (e) => {
+        setNewItem(prevItem => ({
+            ...prevItem,
+            description: e.target.value
+        }))
+    }
+
+    const onChangeHandler = (e) => {
+        setNewItem((prevItem) => ({
+            ...prevItem, quantity: Number(e.target.value)
+        }))
+    }
+    return (<form className={styles.addForm} onSubmit={submitHandler}>
+        <h3>
+            What do you need for your 😍 trip?
+        </h3>
+        <select onChange={onChangeHandler}>
+            {Array.from({length: 20}, (_, i) => {
+                return <option key={i + 1} value={i + 1}>{i + 1}</option>
+            })}
+        </select>
+        <input
+            type='text'
+            placeholder='Item...'
+            value={newItem.description}
+            onChange={changeHandler}
+        />
+        <button type="submit">Add</button>
+    </form>);
 }
+
