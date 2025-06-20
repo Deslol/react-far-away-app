@@ -1,9 +1,13 @@
 import styles from './Stats.module.css'
 
 export default function Stats({items}) {
+    const total = items?.length ?? 0
+    const packed = items?.reduce((acc, cur) => cur.packed ? acc + 1 : acc, 0) ?? 0
+    const packedPercentage = (packed / total) * 100
     return (
         <footer className={styles.stats}>
-            <em> You have {items?.length} items on your list, and you have already packed X (X%)</em>
+            <em> You have {total} items on your list, and you have already
+                packed {packed} ({packedPercentage}%)</em>
         </footer>
     );
 }
