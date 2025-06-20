@@ -1,5 +1,6 @@
 import styles from './PackingList.module.css'
 import PackingListItem from "./PackingListItem/PackingListItem";
+import Actions from "../Actions/Actions";
 
 export default function PackingList({items, onDeleteItem, onSelectItem}) {
     return (
@@ -9,6 +10,7 @@ export default function PackingList({items, onDeleteItem, onSelectItem}) {
                     <PackingListItem key={index} item={item} onDeleteItem={onDeleteItem} idx={index} onSelectItem={onSelectItem}/>
                 ))}
             </ul>
+            <Actions/>
         </div>
     );
 }
