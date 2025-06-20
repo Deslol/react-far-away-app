@@ -18,12 +18,17 @@ function App() {
         setItems((items) => items.filter((item, idx) => idx !== i));
     }
 
+    function handleSelectItem(i) {
+        setItems(items => items.map((item, idx) => idx === i ? {...item, packed: !item.packed} : item))
+
+    }
+
     const [items, setItems] = useState(initialItems)
     return (
         <div className="app">
             <Logo/>
             <Form onAddItem={handleAddItem}/>
-            <PackingList items={items} onDeleteItem={handleDeleteItem}/>
+            <PackingList items={items} onDeleteItem={handleDeleteItem} onSelectItem={handleSelectItem}/>
             <Stats items={items}/>
         </div>
     );
