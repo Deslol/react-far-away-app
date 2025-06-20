@@ -1,15 +1,15 @@
 import styles from './Form.module.css'
 import {useState} from "react";
 
-export default function Form() {
+export default function Form({onAddItem}) {
     const [newItem, setNewItem] = useState({description: '', quantity: 1, packed: false})
     const reset = () => {
         setNewItem({description: '', quantity: 1, packed: false})
     }
     const submitHandler = (e) => {
         e.preventDefault()
-        console.log(newItem)
         if (!newItem.description) return
+        onAddItem(newItem)
         reset()
     }
     const changeHandler = (e) => {

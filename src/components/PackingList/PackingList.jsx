@@ -1,19 +1,12 @@
 import styles from './PackingList.module.css'
-import {useState} from "react";
 import PackingListItem from "./PackingListItem/PackingListItem";
 
-export default function PackingList() {
-    const initialItems = [
-        {id: 1, description: "Passports", quantity: 2, packed: false},
-        {id: 2, description: "Socks", quantity: 12, packed: false},
-    ];
-
-    const [items, setItems] = useState(initialItems)
+export default function PackingList({items, onDeleteItem}) {
     return (
         <div className={styles.list}>
             <ul>
                 {items.map((item, index) => (
-                    <PackingListItem key={index} item={item} />
+                    <PackingListItem key={index} item={item} onDeleteItem={onDeleteItem} idx={index}/>
                 ))}
             </ul>
         </div>
