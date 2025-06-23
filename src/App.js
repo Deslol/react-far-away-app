@@ -6,6 +6,7 @@ import {useState} from "react";
 
 function App() {
     const [items, setItems] = useState([])
+
     function handleAddItem(newItem) {
         setItems((items) => [...items, newItem])
     }
@@ -19,11 +20,25 @@ function App() {
 
     }
 
+    function handleSortItem(sortedItems) {
+        setItems(sortedItems)
+    }
+
+    function handleClearList () {
+        setItems([])
+    }
+
     return (
         <div className="app">
             <Logo/>
             <Form onAddItem={handleAddItem}/>
-            <PackingList items={items} onDeleteItem={handleDeleteItem} onSelectItem={handleSelectItem}/>
+            <PackingList
+                onSelectItem={handleSelectItem}
+                onDeleteItem={handleDeleteItem}
+                onClearList={handleClearList}
+                onSortItem={handleSortItem}
+                items={items}
+            />
             <Stats items={items}/>
         </div>
     );
